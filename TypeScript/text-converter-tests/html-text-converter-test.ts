@@ -8,7 +8,7 @@ describe('Html Converter', () => {
 
 		it('foo', () => {
 			const converter = new HtmlTextConverter('foo');
-			expect(converter.getFilename()).to.eql('fixme');
+			expect(converter.getFilename()).to.eql('foo');
 		});
 
 	});

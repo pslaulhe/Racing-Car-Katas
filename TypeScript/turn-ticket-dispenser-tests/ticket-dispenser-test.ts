@@ -9,7 +9,7 @@ describe('Turn Ticket Dispenser', () => {
 		it('foo', () => {
 			const dispenser = new TicketDispenser();
 			const ticket = dispenser.getTurnTicket();
-			expect(ticket.getTurnNumber()).to.eql(-1);
+			expect(ticket.getTurnNumber()).to.eql(0);
 		});
 
 	});
