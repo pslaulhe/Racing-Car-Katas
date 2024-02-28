@@ -14,6 +14,10 @@ describe('Telemetry System', () => {
 			expect(diagnosticInfo).not.empty;
 		});
 
+		it('Connect telemetry client',() => {
+
+		});
+
 	});
 
 });
