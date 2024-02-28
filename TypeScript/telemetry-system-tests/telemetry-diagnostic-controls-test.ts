@@ -10,7 +10,8 @@ describe('Telemetry System', () => {
 			const telemetryDiagnosticControls = new TelemetryDiagnosticControls();
 			telemetryDiagnosticControls.checkTransmission();
 			const diagnosticInfo = telemetryDiagnosticControls.readDiagnosticInfo();
-			expect(diagnosticInfo).to.not.empty('string');
+			// tslint:disable-next-line:no-unused-expression
+			expect(diagnosticInfo).not.empty;
 		});
 
 	});
