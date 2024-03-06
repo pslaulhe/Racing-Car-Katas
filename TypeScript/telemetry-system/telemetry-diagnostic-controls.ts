@@ -6,9 +6,9 @@ export default class TelemetryDiagnosticControls {
 	private telemetryClient: TelemetryClient;
 	private diagnosticInfo: string;
 
-	constructor() {
+	constructor(telemetryClient: TelemetryClient) {
 		this.diagnosticChannelConnectionString = '*111#';
-		this.telemetryClient = new TelemetryClient();
+		this.telemetryClient = telemetryClient;
 		this.diagnosticInfo = '';
 	}
 

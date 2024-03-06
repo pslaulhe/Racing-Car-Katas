@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import * as jest from 'jest';
 import 'mocha';
 import TelemetryDiagnosticControls from '../telemetry-system/telemetry-diagnostic-controls';
 
@@ -15,7 +16,7 @@ describe('Telemetry System', () => {
 		});
 
 		it('Connect telemetry client',() => {
-
+			jest.
 		});
 
 	});
