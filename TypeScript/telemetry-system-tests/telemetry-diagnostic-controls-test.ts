@@ -15,7 +15,8 @@ describe('Telemetry System', () => {
 		});
 
 		it('Connect telemetry client',() => {
-
+			const telemetryDiagnosticControls = new TelemetryDiagnosticControls();
+			telemetryDiagnosticControls.checkTransmission();
 		});
 
 	});
