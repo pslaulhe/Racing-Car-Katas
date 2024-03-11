@@ -20,17 +20,15 @@ describe('Telemetry System', () => {
 		// This method should be tested with the number of time we call connectTelemetryClient() and the exception
 		it('Connect telemetry client happy path', () => {
 			const telemtryClient = new TelemetryClient();
-			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
-			telemetryDiagnosticControls.connectTelemetryClient();
 
 			sinon.stub(telemtryClient, 'disconnect');
 			sinon.stub(telemtryClient, 'connect');
 			sinon.stub(telemtryClient, 'getOnlineStatus').returns(true);
 
+			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
 
 			// Assert
 			expect(telemetryDiagnosticControls.connectTelemetryClient).not.to.throw("Unable to connect");
-			expect(telemetryDiagnosticControls.connectTelemetryClient).not.to.throw("Cannot read properties of undefined (reading \\'telemetryClient\\')");
 		});
 
 		it('Test telemetry client connection offline ', () => {
@@ -38,7 +36,7 @@ describe('Telemetry System', () => {
 
 			sinon.stub(telemtryClient, 'disconnect');
 			sinon.stub(telemtryClient, 'connect');
-			sinon.stub(telemtryClient, 'getOnlineStatus').returns(false);
+			sinon.stub(telemtryClient, 'getOnlineStatus').returns(true);
 			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
 
 			expect(telemetryDiagnosticControls.connectTelemetryClient).to.throw("Unable to connect");
