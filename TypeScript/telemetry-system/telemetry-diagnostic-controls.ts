@@ -30,7 +30,7 @@ export default class TelemetryDiagnosticControls {
 		this.diagnosticInfo = this.telemetryClient.receive();
 	}
 
-	private connectTelemetryClient() {
+	public connectTelemetryClient() {
 		this.telemetryClient.disconnect();
 		let retryLeft = 3;
 		while (!this.telemetryClient.getOnlineStatus() && retryLeft > 0) {

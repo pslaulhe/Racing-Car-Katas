@@ -15,20 +15,22 @@ describe('Telemetry System', () => {
 			// tslint:disable-next-line:no-unused-expression
 			expect(diagnosticInfo).not.empty;
 		});
+
 		//This method should be tested with the number of time we call connectTelemetryClient() and the exception
 		it('Connect telemetry client happy path', () => {
+			sinon.stub(telemtryClient, 'disconnect');
 			sinon.stub(telemtryClient, 'connect');
 			sinon.stub(telemtryClient, 'getOnlineStatus').returns(true);
 			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
-			telemetryDiagnosticControls.connectTelemetryClient();
 
-			//To change
-			expect(telemtryClient.getOnlineStatus()).to.be.true;
+			// Assert
+			expect(telemetryDiagnosticControls.connectTelemetryClient).not.to.throw("Unable to connect");
 		});
 
 		it('Test telemetry client connection offline ', () => {
 
 		});
+
 		//This method should be tested with the number of time we call connectTelemetryClient()
 		it('Test telemetry client connection offline until 3rd try', () => {
 
