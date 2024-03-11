@@ -7,8 +7,9 @@ import TelemetryDiagnosticControls from '../telemetry-system/telemetry-diagnosti
 describe('Telemetry System', () => {
 
 	describe('TelemetryDiagnosticControls', () => {
-		const telemtryClient = new TelemetryClient();
 		it('CheckTransmission should send a diagnostic message and receive a status message response', () => {
+			const telemtryClient = new TelemetryClient();
+
 			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
 			telemetryDiagnosticControls.checkTransmission();
 			const diagnosticInfo = telemetryDiagnosticControls.readDiagnosticInfo();
@@ -16,9 +17,11 @@ describe('Telemetry System', () => {
 			expect(diagnosticInfo).not.empty;
 		});
 
-		//This method should be tested with the number of time we call connectTelemetryClient() and the exception
+		// This method should be tested with the number of time we call connectTelemetryClient() and the exception
 		it('Connect telemetry client happy path', () => {
-			sinon.stub(telemtryClient, 'disconnect');
+			const telemtryClient = new TelemetryClient();
+
+			sinon.stub(telemtryClient, 'disconnect').returns();
 			sinon.stub(telemtryClient, 'connect');
 			sinon.stub(telemtryClient, 'getOnlineStatus').returns(true);
 			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
@@ -28,10 +31,17 @@ describe('Telemetry System', () => {
 		});
 
 		it('Test telemetry client connection offline ', () => {
+			const telemtryClient = new TelemetryClient();
 
+			sinon.stub(telemtryClient, 'disconnect');
+			sinon.stub(telemtryClient, 'connect');
+			sinon.stub(telemtryClient, 'getOnlineStatus').returns(false);
+			const telemetryDiagnosticControls = new TelemetryDiagnosticControls(telemtryClient);
+
+			expect(telemetryDiagnosticControls.connectTelemetryClient).throw("Unable to connect");
 		});
 
-		//This method should be tested with the number of time we call connectTelemetryClient()
+		// This method should be tested with the number of time we call connectTelemetryClient()
 		it('Test telemetry client connection offline until 3rd try', () => {
 
 		});
